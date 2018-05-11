@@ -1,4 +1,12 @@
 class Product:
+    # class variable
+    tax = 15
+
+    @staticmethod
+    def set_tax(tax):
+        if tax >= 5 and tax <= 50:
+            Product.tax = tax
+
     # constructor
     def __init__(self, name, price=0):
         self.__name = name
@@ -13,9 +21,13 @@ class Product:
     def __str__(self):
         return "%s %10d" % (self.__name, self.__price)
 
+    @property  # Getter
+    def netprice(self):
+        return self.__price + (self.__price * self.tax / 100)
+
 
 c1 = Product("iPhone X", 80000)
-print(str(c1))
 c1.print()
-
-c2 = Product("Samsung S9")
+Product.set_tax(20)  # calling static method
+print(str(c1))
+print(c1.netprice)
