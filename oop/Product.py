@@ -22,12 +22,33 @@ class Product:
         return "%s %10d" % (self.__name, self.__price)
 
     @property  # Getter
+    def price(self):
+        return self.__price
+
+    @property  # Getter
     def netprice(self):
         return self.__price + (self.__price * self.tax / 100)
 
 
+class DiscountProduct(Product):
+    def __init__(self, name, price, discount):
+        super().__init__(name, price)
+        self.__discount = discount
+
+    def print(self):
+        super().print()
+        print(self.__discount)
+
+    @property  # Getter
+    def netprice(self):
+        baseprice = super().price
+        gross = baseprice - (baseprice * self.__discount // 100)  # subtract discount
+        return gross + (gross * Product.tax / 100)  # Add tax
+
+
 c1 = Product("iPhone X", 80000)
 c1.print()
-Product.set_tax(20)  # calling static method
-print(str(c1))
+
+c1 = DiscountProduct("iPhone 7 plus", 60000, 10)
+c1.print()
 print(c1.netprice)
