@@ -1,1 +1,1 @@
-from .funs import *
+print("loading package")
