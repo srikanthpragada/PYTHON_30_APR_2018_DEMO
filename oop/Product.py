@@ -1,3 +1,10 @@
+class TaxError(Exception):
+    def  __init__(self,message = "Invalid Tax"):
+        self.message = message
+
+    def __str__(self):
+        return  self.message
+
 class Product:
     # class variable
     tax = 15
@@ -6,6 +13,8 @@ class Product:
     def set_tax(tax):
         if tax >= 5 and tax <= 50:
             Product.tax = tax
+        else:
+            raise TaxError()
 
     # constructor
     def __init__(self, name, price=0):
@@ -46,9 +55,14 @@ class DiscountProduct(Product):
         return gross + (gross * Product.tax / 100)  # Add tax
 
 
-c1 = Product("iPhone X", 80000)
-c1.print()
+# c1 = Product("iPhone X", 80000)
+# c1.print()
+#
+# c1 = DiscountProduct("iPhone 7 plus", 60000, 10)
+# c1.print()
+# print(c1.netprice)
 
-c1 = DiscountProduct("iPhone 7 plus", 60000, 10)
-c1.print()
-print(c1.netprice)
+try:
+    Product.set_tax(2)
+except TaxError as ex :
+    print(ex)  # str(ex)  -->   ex.__str__()

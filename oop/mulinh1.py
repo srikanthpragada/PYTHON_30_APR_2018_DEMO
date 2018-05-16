@@ -15,6 +15,8 @@ class D(C):
         print("D")
 
 class E(B, D):
+    def print(self):
+        super().print();
     pass
     # def print(self):
     #     print("E")

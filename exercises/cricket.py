@@ -4,10 +4,9 @@ class Cricketer:
         self.country = country
         self.catches = catches
 
-
 class Bowler(Cricketer):
     def __init__(self, name, country, catches, wickets):
-        super().__init__(name, country, catches)
+        Cricketer.__init__(self,name, country, catches)
         self.wickets = wickets
 
     @property
@@ -17,7 +16,7 @@ class Bowler(Cricketer):
 
 class Batsman(Cricketer):
     def __init__(self, name, country, catches, runs):
-        super().__init__(name, country, catches)
+        Cricketer.__init__(self,name, country, catches)
         self.runs = runs
 
     @property
@@ -28,7 +27,7 @@ class Batsman(Cricketer):
 class Allrounder(Batsman, Bowler):
     def __init__(self, name, country, catches, wickets, runs):
         Batsman.__init__(self, name, country, catches, runs)
-        # Bowler.__init__(self, name, country, catches, wickets)
+        Bowler.__init__(self, name, country, catches, wickets)
 
     def print(self):
         print(self.name, self.country, self.catches, self.wickets, self.runs)
@@ -43,4 +42,5 @@ bo = Bowler("Pqr", "Aus", 10, 250)
 print(ba.points)
 print(bo.points)
 a = Allrounder("Abc", "India", 10, 50, 2000)
-# a.print()
+a.print()
+print(a.points)
