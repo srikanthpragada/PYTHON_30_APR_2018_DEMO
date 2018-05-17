@@ -1,3 +1,5 @@
+import sys
+
 sum = 0
 i = 1
 while (i <= 5):
@@ -6,6 +8,7 @@ while (i <= 5):
         sum += num
         i += 1
     except:
+        print (sys.exc_info())
         print("Sorry! Invalid number. Please try again!")
 
 print("Average = ", sum // 5)
