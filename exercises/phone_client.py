@@ -1,9 +1,9 @@
-#Phone client connected to 1234
+# Phone client connected to 1234
 
 import socket  # Import socket module
 
 s = socket.socket()  # Create a socket object
-host = "localhost" # Get local machine name
+host = "localhost"  # Get local machine name
 port = 1234  # Reserve a port for your service.
 
 s.connect((host, port))
